@@ -1,3 +1,9 @@
+/**
+ * Date: 03/05/2018
+ * Created By: Shuai Liu
+ * 
+ * Create your own hashmap
+ */
 import java.util.ArrayList;
  
 // A node of chains

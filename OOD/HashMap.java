@@ -1,3 +1,9 @@
+/**
+ * 
+ * Date: 03/05/2018
+ * Created By: Shuai Liu
+ * 
+ */
 import java.util.*;
 class HashNode<K, V> {
     K key;
