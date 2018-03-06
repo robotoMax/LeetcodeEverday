@@ -1,4 +1,8 @@
 /**
+ *
+ * Date: 03/05/2018
+ * Created By: Shuai Liu
+ *
  * Given a collection of candidate numbers (C) and a target number (T), 
  * find all unique combinations in C where the candidate numbers sums to T.
  * 
