@@ -29,32 +29,23 @@ public class MostFrequentSubtreeSum {
         if (root == null) return new int[0];
         Map<Integer, Integer> map = new HashMap<>();
         List<Integer> list = new ArrayList<>();
-        helper(root, map, list);
+        helper(root, list, map);
         int[] res = new int[list.size()];
-        for (int i = 0; i < list.size(); i++) {
-            res[i] = list.get(i);
-        }
+        for (int i = 0; i < list.size(); i++) res[i] = list.get(i);
         return res;
     }
-    public int helper(TreeNode root, Map<Integer, Integer> map, List<Integer> list) {
+    public int helper(TreeNode root, List<Integer> list, Map<Integer, Integer> map) {
         if (root == null) return 0;
-        int left = helper(root.left, map, list);
-        int right = helper(root.right, map, list);
+        int left = helper(root.left, list, map);
+        int right = helper(root.right, list, map);
         int temp = left + right + root.val;
-        if (!map.containsKey(temp)) {
-            map.put(temp, 1);
-        }
-        else map.put(temp, map.get(temp) + 1);
-        int freq = map.get(temp);
-        if (freq >= max) {
-            if (freq == max) {
-                list.add(temp);
-            }
-            else {
-                max = freq;
+        map.put(temp, map.getOrDefault(temp, 0) + 1);
+        if (map.get(temp) >= max) {
+            if (map.get(temp) > max) {
+                max = map.get(temp);
                 list.clear();
-                list.add(temp);
             }
+            list.add(temp);
         }
         return temp;
     }
