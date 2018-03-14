@@ -31,4 +31,29 @@ public class WordBreak {
         }
         return dp[s.length()];
     }
+    public static String solution1(String s, List<String> wordDict) {
+        if (s == null || s.length() == 0) return "";
+        boolean[] dp = new boolean[s.length() + 1];
+        dp[0] = true;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 1; i <= s.length(); i++) {
+            for (int j = 0; j < i; j++) {
+                String str = s.substring(j, i);
+                if (dp[j] && wordDict.contains(str)) {
+                    dp[i] = true;
+                    sb.append(str).append(" ");
+                    break;
+                }
+                else dp[i] = false;
+            }
+        }
+        return sb.toString().trim(); // this will return "leet code"
+    }
+    public static void main(String[] args) {
+        List<String> wordDict = new ArrayList<>();
+        String[] dict = {"leet", "code"};
+        wordDict.addAll(Arrays.asList(dict));
+        String s = "leetcode";
+        System.out.println(solution1(s, wordDict));
+    }
 }
