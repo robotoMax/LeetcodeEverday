@@ -28,7 +28,7 @@ public class NextClosestTimeII {
             if (hour > 23 || minute > 59) return;
             int num = hour * 60 + minute;
             int m = num - target > 0 ? num - target : num + 1440 - target;
-            if (m < diff) {
+            if (m < diff) { 
                 diff = m;
                 res = temp.substring(0, 2) + ":" + temp.substring(2, 4);
             }

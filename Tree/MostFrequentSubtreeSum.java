@@ -41,7 +41,7 @@ public class MostFrequentSubtreeSum {
         int temp = left + right + root.val;
         map.put(temp, map.getOrDefault(temp, 0) + 1);
         if (map.get(temp) >= max) {
-            if (map.get(temp) > max) {
+            if (map.get(temp) > max)    {
                 max = map.get(temp);
                 list.clear();
             }

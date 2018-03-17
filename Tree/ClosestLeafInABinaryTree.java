@@ -41,6 +41,7 @@ public class ClosestLeafInABinaryTree {
         Map<TreeNode, TreeNode> map = new HashMap<>();
         Set<TreeNode> visited = new HashSet<>();
         TreeNode startNode = helper(root, k, map);
+        visited.add(startNode);
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(startNode);
         while (!queue.isEmpty()) {
