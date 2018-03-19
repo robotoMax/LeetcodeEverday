@@ -14,25 +14,17 @@
  */
 public class AddBinary {
     public String addBinary(String a, String b) {
-        int al = a.length() - 1;
-        int bl = b.length() - 1;
+        int m = a.length() - 1;
+        int n = b.length() - 1;
         StringBuilder sb = new StringBuilder();
         int sum = 0;
-        int carry = 0;
-        while (al >= 0 || bl >= 0) {
-            sum = carry;
-            if (al >= 0) {
-                sum += a.charAt(al) - '0';
-                al--;
-            }
-            if (bl >= 0) {
-                sum += b.charAt(bl) - '0';
-                bl--;
-            }
+        while (m >= 0 || n >= 0) {
+            if (m >= 0) sum += a.charAt(m--) - '0';
+            if (n >= 0) sum += b.charAt(n--) - '0';
             sb.append(sum % 2);
-            carry = sum / 2;
+            sum /= 2;
         }
-        if (carry == 1) sb.append(1);
+        if (sum == 1) sb.append(1);
         return sb.reverse().toString();
     }
 }
