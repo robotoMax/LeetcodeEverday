@@ -22,6 +22,9 @@
  * Of course we don’t actually adjust the whole array but instead adjust only on the fly only the elements we look at. 
  * And the adjustment is done by comparing both the target and the actual element against nums[0].
  */
+/**
+ * the answer of follow up II is also valid in this problem.
+ */
 public class SearchInRotatedSortedArray {
     public int search(int[] nums, int target) {
         if (nums == null || nums.length == 0) return -1;
