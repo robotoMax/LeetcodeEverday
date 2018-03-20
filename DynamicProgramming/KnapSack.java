@@ -17,9 +17,17 @@ public class KnapSack {
                     dp[i][j] = 0;
                     continue;
                 }
-                dp[i][j] = Math.max(dp[i - 1][j], (j >= weights[i - 1] ? dp[i - 1][j - weights[i - 1]] : 0 + value[i - 1])); // dp[i - 1] means exclude the current ith item.
+                if (j - weights[i - 1] > 0) dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - weights[i - 1]] + value[i - 1]);
+                else dp[i][j] = dp[i - 1][j];
             }
         }
         return dp[value.length][weight];
+    }
+    public static void main(String[] args) {
+        int[] value = {1,4,5,7};
+        int[] weights = {1,3,4,5};
+        int weight = 7;
+        KnapSack knapSack = new KnapSack();
+        System.out.println(knapSack.solution(value, weights, weight));
     }
 }

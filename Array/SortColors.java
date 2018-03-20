@@ -1,4 +1,8 @@
 /**
+ * 
+ * Date: 03/18/2018
+ * Created By: Shuai Liu
+ * 
  * Given an array with n objects colored red, white or blue, sort them so that objects of the same color are adjacent, 
  * with the colors in the order red, white and blue.
  * 

@@ -36,4 +36,7 @@ public class WildcardMatching {
         }
         return dp[m][n];
     }
+    // For dp[i - 1][j] indicates that if s.substring(0, i - 1) matches p.substring(0, j). Then * can represents 
+    // character s.charAt(i);
+    // For dp[i][j - 1] indicates that * is empty.
 }
