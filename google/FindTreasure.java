@@ -8,6 +8,7 @@ public class FindTreasure {
     public boolean canFindTreasure(Room[][] rooms, Room root) {
         Map<Room, List<Room>> graph = new HashMap<>();
         Map<Integer, Key> open = new HashMap<>();
+        Map<Key, Room> waitingForOpen = new HashMap<>();
         for (Room[] room : rooms) {
             if (!graph.containsKey(room[0])) graph.put(room[0], new ArrayList<>());
             graph.get(room[0]).add(room[1]);
@@ -21,8 +22,7 @@ public class FindTreasure {
             if (!graph.containsKey(cur)) break;
             // the room needs a key to open the door, however we don't have the key
             if (cur.key != null && !open.containsKey(cur.num)) {
-                queue.add(cur);
-                continue;
+                waitingForOpen.put(cur.key, cur);
             }
             if (cur.haveTreasure) {
                 found = true;

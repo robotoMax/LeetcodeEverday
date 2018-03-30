@@ -49,7 +49,7 @@ public class CoinChangeII {
                 dp[i][j] = dp[i - 1][j] + (j >= coins[i - 1] ? dp[i][j - coins[i - 1]] : 0);
             }
         }
-        return dp[coins.length + 1][amount + 1];
+        return dp[coins.length][amount];
     }
     // it can be simplified to one dimensional dp array 
     public int change2(int amount, int[] coins) {
