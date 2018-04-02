@@ -36,17 +36,16 @@ public class BinaryTreeLongestConsecutiveSequenceII {
         if (root == null) return new int[]{0, 0};
         int[] left = helper(root.left);
         int[] right = helper(root.right);
-        int inc = 1;
-        int dec = 1;
+        int[] temp = new int[] {1, 1};
         if (root.left != null) {
-            if (root.val - root.left.val == 1) dec = left[1] + 1;
-            if (root.val - root.left.val == -1) inc = left[0] + 1;
+            if (root.left.val - root.val == 1) temp[0] = left[0] + 1;
+            if (root.left.val - root.val == -1) temp[1] = left[1] + 1;
         }
         if (root.right != null) {
-            if (root.val - root.right.val == 1) dec = Math.max(dec, right[1] + 1);
-            if (root.val - root.right.val == -1) inc = Math.max(inc, right[0] + 1);
+            if (root.right.val - root.val == 1) temp[0] = Math.max(temp[0], right[0] + 1);
+            if (root.right.val - root.val == -1) temp[1] = Math.max(temp[1], right[1] + 1);
         }
-        res = Math.max(res, inc + dec - 1);
-        return new int[]{inc, dec};
+        res = Math.max(res, temp[0] + temp[1] - 1);
+        return temp;
     }
 }

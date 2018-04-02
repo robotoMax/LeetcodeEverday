@@ -56,6 +56,6 @@ public class LongestIncreasingPathInAMatrix {
             res = Math.max(res, temp + 1);
         }
         cache[i][j] = res;
-        return cache[i][j];
+        return res;
     }
 }

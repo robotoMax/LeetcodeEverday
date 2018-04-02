@@ -17,6 +17,7 @@
  * diff: (k - 1) * total
  * same: last diff
  */
+// at first, there are no post before the first post. So the variable same is initialized to 0 and variable diff is k.
 public class PaintFence {
     public int numWays(int n, int k) {
         if (n == 0) return 0;
