@@ -14,6 +14,7 @@
  */
 import java.util.*;
 public class GraphValidTree {
+    // DFS ---- to find the back edge.
     public boolean validTree(int n, int[][] edges) {
         List<List<Integer>> graph = new ArrayList<>();
         for (int i = 0; i < n; i++) {
@@ -41,5 +42,26 @@ public class GraphValidTree {
             }
         }
         return false;
+    }
+    // Union Find 
+    // editing time: 04/02/2018
+    public boolean validTree1(int n, int[][] edges) {
+        int[] parents = new int[n];
+        for (int i = 0; i < n; i++) parents[i] = i;
+        for (int[] e : edges) {
+            int x = find(e[0], parents);
+            int y = find(e[1], parents);
+            if (x == y) return false; // means that e[0] and e[1] are already meets, they are in the same set.
+            parents[y] = x;
+            n--;
+        }
+        return n == 1;
+    }    
+    public int find(int id, int[] parents) {
+        int par = parents[id];
+        while (par != parents[par]) {
+            par = parents[par];
+        }
+        return par;
     }
 }

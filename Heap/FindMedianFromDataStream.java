@@ -25,6 +25,7 @@
  * findMedian() -> 2
  * 
  */
+// this question is same as 239. Sliding Window Maximum
 import java.util.*;
 public class FindMedianFromDataStream {
 

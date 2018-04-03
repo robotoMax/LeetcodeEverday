@@ -28,6 +28,9 @@
  * Note: 
  * You may assume k is always valid, ie: k is always smaller than input array's size for non-empty array.
  */
+/**
+ * this question is same as 295. Find Median from Data Stream
+ */
 import java.util.*;
 public class SlidingWindowMedian {
     PriorityQueue<Integer> minHeap = new PriorityQueue<>();
