@@ -25,7 +25,6 @@ The wordList parameter had been changed to a list of strings (instead of a set o
  */
 import java.util.*;
 
-import javax.print.attribute.HashPrintServiceAttributeSet;
 public class WordLadder {
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
         Set<String> visited = new HashSet<>();
@@ -52,4 +51,39 @@ public class WordLadder {
         }
         return 0;
     }
+    // using two-end BFS == Bidirectional BFS
+    // same as Minimum Genetic Mutation
+    public int ladderLength1(String beginWord, String endWord, List<String> wordList) {
+        Set<String> dict = new HashSet<>(wordList);
+        Set<String> start = new HashSet<>();
+        Set<String> end = new HashSet<>();
+        Set<String> visited = new HashSet<>();
+        start.add(beginWord);
+        if (dict.contains(endWord)) end.add(endWord);
+        int level = 1;
+        while (!start.isEmpty() && !end.isEmpty()) {
+            if (start.size() > end.size()) {
+                Set<String> temp = start;
+                start = end;
+                end = temp;
+            }
+            Set<String> temp = new HashSet<>();
+            for (String str : start) {
+                char[] chars = str.toCharArray();
+                for (int i = 0; i < chars.length; i++) {
+                    char old = chars[i];
+                    for (char a = 'a'; a <= 'z'; a++) {
+                        chars[i] = a;
+                        String next = new String(chars);
+                        if (end.contains(next)) return level + 1;
+                        if (dict.contains(next) && visited.add(next)) temp.add(next);
+                    }
+                    chars[i] = old;
+                }
+            }
+            start = temp;
+            level++;
+        }
+        return 0;
+    }    
 }

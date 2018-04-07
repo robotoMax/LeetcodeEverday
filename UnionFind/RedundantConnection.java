@@ -60,5 +60,25 @@ public class RedundantConnection {
         }
         return new int[0];
     }
+    // shorten version
+    public int[] findRedundantConnection(int[][] edges) {
+        int[] roots = new int[edges.length + 1];
+        for (int i = 0; i < roots.length; i++) roots[i] = i;
+        for (int[] e : edges) {
+            int a = find(e[0], roots);
+            int b = find(e[1], roots);
+            if (a == b) return e;
+            roots[b] = a;
+        }
+        return null;
+    }
+
+    public int find(int key, int[] roots) {
+        int par = roots[key];
+        while (par != roots[par]) {
+            par = roots[par];
+        }
+        return par;
+    }
 
 }
