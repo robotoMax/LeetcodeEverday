@@ -29,23 +29,19 @@ public class CombinationSumII {
         List<List<Integer>> res = new ArrayList<>();
         if (candidates == null || candidates.length == 0) return res;
         Arrays.sort(candidates);
-        boolean[] visited = new boolean[candidates.length];
-        helper(candidates, target, res, visited, new ArrayList<>(), 0, 0);
+        helper(candidates, target, res, new ArrayList<>(), 0, 0);
         return res;
     }
-    public void helper(int[] nums, int target, List<List<Integer>> res, boolean[] visited, List<Integer> temp, int cur, int pos) {
+    public void helper(int[] nums, int target, List<List<Integer>> res, List<Integer> temp, int cur, int pos) {
         if (cur == target) {
             res.add(new ArrayList<>(temp));
             return;
         }
         for (int i = pos; i < nums.length; i++) {
-            if (visited[i]) continue;
             if (cur + nums[i] > target) continue;
             if (i > pos && nums[i] == nums[i - 1]) continue;
             temp.add(nums[i]);
-            visited[i] = true;
-            helper(nums, target, res, visited, temp, cur + nums[i], i + 1);
-            visited[i] = false;
+            helper(nums, target, res, temp, cur + nums[i], i + 1);
             temp.remove(temp.size() - 1);
         }
         return;

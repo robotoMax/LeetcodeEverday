@@ -36,5 +36,5 @@ public class VerifyPreorderSequenceInBinarySearchTree {
             preorder[++i] = node;
         }
         return true;
-    }    
+    } 
 }

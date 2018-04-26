@@ -63,3 +63,44 @@ class Key {
         this.openRoomNumber = openRoomNumber;
     }
 }
+
+
+class NewSolution {
+    public boolean getTreasure(int N, List<int[]> doors, Map<int[], String> lockedDoors, Map<Integer, String> keys) {
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(0);
+        Map<Integer, Set<Integer>> fromToRooom = new HashMap<>();
+        Set<String> availableKeys = new HashSet<>();
+        Map<String, Integer> lockedRoom = new HashMap<>();
+        Set<Integer> visited = new HashSet<>();
+        for (int[] room : doors) {
+            if (!fromToRooom.containsKey(room[0])) fromToRooom.put(room[0], new HashSet<>());
+            if (!fromToRooom.containsKey(room[1])) fromToRooom.put(room[1], new HashSet<>());
+            fromToRooom.get(room[0]).add(room[1]);
+            fromToRooom.get(room[1]).add(room[0]);
+        }
+        while (!queue.isEmpty()) {
+            int cur = queue.poll();
+            if (cur == N - 1) return true;
+            visited.add(cur);
+            if (keys.containsKey(cur)) {
+                availableKeys.add(keys.get(cur));
+            }
+            for (int next : fromToRooom.getOrDefault(cur, new HashSet<>())) {
+                int[] door = new int[] {cur, next};
+                if (lockedDoors.containsKey(door)) {
+                    String key = lockedDoors.get(door);
+                    if (availableKeys.contains(key)) {
+                        queue.add(next);
+                        availableKeys.remove(key);
+                    }
+                    else {
+                        lockedRoom.put(key, next);
+                    }
+                }
+                else queue.add(next);
+            }
+        }
+        return false;
+    }
+}

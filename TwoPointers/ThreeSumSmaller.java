@@ -27,8 +27,31 @@ public class ThreeSumSmaller {
                     res += right - left;
                     left++;
                 }
-                else if (sum >= target) right--;
+                else right--;
             }
+        }
+        return res;
+    }
+    // ********************************************************
+    public int threeSumSmaller1(int[] nums, int target) {
+        if (nums == null || nums.length == 0) return 0;
+        Arrays.sort(nums);
+        int res = 0;
+        for (int i = 0; i < nums.length - 2; i++) {
+            res += twoSumSmaller(nums, i + 1, target - nums[i]);
+        }
+        return res;
+    }
+    public int twoSumSmaller(int[] nums, int start, int target) {
+        int i = start;
+        int j = nums.length - 1;
+        int res = 0;
+        while (i < j) {
+            if (nums[i] + nums[j] < target) {
+                res += j - i;
+                i++;
+            }
+            else j--;
         }
         return res;
     }

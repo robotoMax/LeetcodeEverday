@@ -19,32 +19,20 @@
  * this question is same as Search a 2D Matrix II. 
  */
 public class SearchA2DMatrix {
-    // regular way
     public boolean searchMatrix(int[][] matrix, int target) {
-        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) return false;
-        for (int i = 0; i < matrix.length; i++) {
-            int j = matrix[0].length - 1;
-            if (target == matrix[i][j]) return true;
-            if (target < matrix[i][j]) {
-                while (j >= 0) {
-                    if (target == matrix[i][j]) return true;
-                    j--;
-                }
-            }
-        }
-        return false;
-    }
-    // binary search
-    public boolean searchMatrix1(int[][] matrix, int target) {
         if (matrix == null || matrix.length == 0) return false;
-        int col = matrix[0].length - 1;
-        int row = 0;
-        while (col >= 0 && row <= matrix.length - 1) {
-            if (matrix[row][col] == target) return true;
-            else if (matrix[row][col] < target) row++;
-            else if (matrix[row][col] > target) col--;
+        int m = matrix.length;
+        int n = matrix[0].length;
+        int i = 0;
+        int j = m * n - 1;
+        while (i <= j) {
+            int mid = (j - i) / 2 + i;
+            if (matrix[mid / n][mid % n] == target) return true;
+            else if (matrix[mid / n][mid % n] < target) {
+                i = mid + 1;
+            }
+            else if (matrix[mid / n][mid % n] > target) j = mid - 1;
         }
-        
         return false;
     }
 }

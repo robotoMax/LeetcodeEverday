@@ -47,4 +47,23 @@ public class EditDistance {
         }
         return dp[word1.length()][word2.length()];
     }
+    public int solutionForEditDistancePlusTransposition(String a, String b) {
+        int[][] dp = new int[a.length() + 1][b.length() + 1];
+        for (int i = 0; i <= a.length(); i++) dp[i][0] = i;
+        for (int i = 0; i <= b.length(); i++) dp[0][i] = i;
+        for (int i = 1; i <= a.length(); i++) {
+            for (int j = 1; j <= b.length(); j++) {
+                int cost = 0;
+                if (a.charAt(i) == b.charAt(j)) {
+                    cost = 0;
+                }
+                else cost = 1;
+            }
+            dp[i][j] = Math.min(dp[i][j - 1], Math.min(dp[i - 1][j], dp[i - 1][j - 1] + cost));
+            if (i > 1 && j > 1 && a.charAt(i - 1) == b.charAt(j) && a.charAt(i) == b.charAt(j - 1))  {
+                dp[i][j] = Math.min(dp[i][j], dp[i - 2][j - 2] + cost);
+            }
+        }
+        return dp[a.length()][b.length()];
+    }
 }

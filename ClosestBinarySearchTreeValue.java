@@ -9,20 +9,11 @@
  * 2. You are guaranteed to have only one unique value in the BST that is closest to the target.
  */
 public class ClosestBinarySearchTreeValue {
-    int res = 0;
-    double diff = Integer.MAX_VALUE;
     public int closestValue(TreeNode root, double target) {
-        if (root == null) return 0;
-        helper(root, target);
-        return res;
-    }
-    public void helper(TreeNode root, double target) {
-        if (root == null) return;
-        helper(root.left, target);
-        if (Math.abs(root.val - target) < diff) {
-            diff = Math.abs(root.val - target);
-            res = root.val;
-        }
-        helper(root.right, target);
+        int a = root.val;
+        TreeNode next = root.val < target ? root.right : root.left;
+        if (next == null) return a;
+        int b = closestValue(next, target);
+        return Math.abs(a - target) < Math.abs(b - target) ? a : b;
     }
 }

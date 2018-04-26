@@ -1,6 +1,6 @@
 /**
  * just need one time, not multimple time that what's the most votes before time x.
- * We can just keep a variable max to record the lobal max and an arraylist. If the 
+ * We can just keep a variable max to record the global max and an arraylist. If the 
  * max change, we can clear the result arraylist, add the new name to the arraylist.Or if 
  * current votes is equals to the max, then we can add the name to the result.
  */
@@ -16,7 +16,7 @@ public class VotingSystem {
         public final int votes;
         Node pre;
         Node next;
-        TreeMap<Integer, List<String>> candidates;
+         TreeMap<Integer, List<String>> candidates;
         public Node(int votes, int time, String name, Node pre, Node next) {
             candidates = new TreeMap<>();
             this.votes = votes;

@@ -43,18 +43,18 @@ public class CleaningRobot {
     Set<String> memo = new HashSet<>();
     public void dfsClean(int x, int y, int d, Set<String> memo){
         // x,y: position, d: direction
-        String hcode = x+":"+y;
+        String hcode = x + ":" + y;
         this.Clean();
         memo.add(hcode);
         for(int i=0; i<4; i++){
             this.TurnRight(i>0?1:0); // first go ahead, then each time one turn.1
             int nd = (d+i)%4;
-            int nx = x+dirs[nd][0];
-            int ny = y+dirs[nd][1];
+            int nx = x+dirs[d][0];
+            int ny = y+dirs[d][1];
             String ncode = nx+":"+ny;
             if(!memo.contains(ncode)){
                 if(this.Move()){
-                    dfsClean(nx, ny, nd, memo);// take care to orient to oposite direction of nd
+                    dfsClean(nx, ny, i, memo);// take care to orient to oposite direction of nd
                     // move back and turn to nd
                     // reset to direction before
                     this.TurnRight(2);

@@ -37,8 +37,41 @@ public class ManagerPeer {
         peerGraph.get(e2).add(e1);
     }
 
+    // public boolean isManaging(String e1, String e2) {
+    //     Set<String> start = new HashSet<>();
+    //     Set<String> end = new HashSet<>();
+    //     Set<String> visited = new HashSet<>();
+    //     if (!managerGraph.containsKey(e1) && !managerGraph.containsKey(e2) && !peerGraph.containsKey(e1) && !peerGraph.containsKey(e2)) return false;
+    //     if (peerGraph.containsKey(e1) && peerGraph.get(e1).contains(e2)) return false;
+    //     start.add(e2);
+    //     end.add(e1);
+    //     while (!start.isEmpty() && !end.isEmpty()) {
+    //         if (start.size() > end.size()) {
+    //             Set<String> temp = start;
+    //             start = end;
+    //             end = temp;
+    //         }
+    //         Set<String> next = new HashSet<>();
+    //         for (String str : start) {
+    //             if (end.contains(str)) return true;
+    //             if (!visited.add(str)) continue;
+    //             Set<String> peers = null;
+    //             Set<String> sub = null;
+    //             if (peerGraph.get(str) != null) peers = peerGraph.get(str);
+    //             if (managerGraph.get(str) != null) sub = managerGraph.get(str);
+    //             if (peers != null) {
+    //                 next.addAll(peers);
+    //             }
+    //             if (sub != null) next.addAll(sub);
+    //         }
+    //         start = next;
+    //     }
+    //     return false;
+    // }
+
     public boolean isManaging(String e1, String e2) {
         Set<String> visited = new HashSet<>();
+        if (peerGraph.containsKey(e1) && peerGraph.get(e1).contains(e2)) return false;
         if (helper(e1, e2, visited) || helper(e2, e1, visited)) return true;
         return false;
     }
@@ -73,6 +106,6 @@ public class ManagerPeer {
         managerPeer.manage("g", "z");
         managerPeer.peer("e", "c");
         managerPeer.peer("a", "g");
-        System.out.println(managerPeer.isManaging("b", "z"));
+        System.out.println(managerPeer.isManaging("a", "f"));
     }
 }

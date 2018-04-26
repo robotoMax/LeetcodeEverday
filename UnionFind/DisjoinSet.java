@@ -43,11 +43,21 @@ public class DisjoinSet {
         return true;
     }
 
+    // Recursion way:
     public Node findSet(Node node) {
         Node parent = node.parent;
         if (parent == node) return parent;
         node.parent = findSet(node.parent);
         return node.parent;        
+    }
+
+    // Iteration way:
+    public Node find(Node node) {
+        Node par = node.parent;
+        while (par != par.parent) {
+            par = par.parent;
+        }
+        return par;
     }
 
 }
