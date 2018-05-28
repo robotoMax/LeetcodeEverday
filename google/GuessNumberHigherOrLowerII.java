@@ -10,7 +10,8 @@
  * I picked.
  * Example:
  * n = 10, I pick 8.
- * First round:  You guess 5, I tell you that it's higher. You pay $5.
+ * First round:  You
+ *  guess 5, I tell you that it's higher. You pay $5.
  * Second round: You guess 7, I tell you that it's higher. You pay $7.
  * Third round:  You guess 9, I tell you that it's lower. You pay $9.
  * Game over. 8 is the number I picked.
@@ -20,6 +21,10 @@
 /**
  * finding the maximum out of the minimum costs of its left and right segments
  * the method is similar to number of distinct tree
+ */
+/**
+ * Created By: Shuai Liu
+ * 请勿作为商业用处。尊重劳动成果
  */
 public class GuessNumberHigherOrLowerII {
     public int getMoneyAmount(int n) {

@@ -2,6 +2,10 @@
  * 给一个dict.txt和readline() function，dict.txt中每行是一个英文单词，比如 a, an, the, tank, ten, bet, ant, cut，
  * 给一个char set 比如[a, t, n, e] 返回所有由这个set中char组成的最长单词，set里面每个字母只能用一次， 这个返回就是[”ant”, “ten"] 
  */
+/**
+ * Created By: Shuai Liu
+ * 请勿作为商业用处。尊重劳动成果
+ */
 import java.util.*;
 public class DictionaryCharSet {
     /**
@@ -29,6 +33,10 @@ public class DictionaryCharSet {
                     break;
                 }
             }
+            /**
+ * Created By: Shuai Liu
+ * 请勿作为商业用处。尊重劳动成果
+ */
             if (i == s.length()) {
                 addToMap(map, s);
                 max = Math.max(max, s.length());

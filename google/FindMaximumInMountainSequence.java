@@ -4,6 +4,10 @@
  * Given nums = [1, 2, 4, 8, 6, 3] return 8 
  * Given nums = [10, 9, 8, 7], return 10
  */
+/**
+ * Created By: Shuai Liu
+ * 请勿作为商业用处。尊重劳动成果
+ */
 public class FindMaximumInMountainSequence {
     public int solution(int[] nums) {
         if (nums == null || nums.length == 0) return 0;
@@ -18,6 +22,10 @@ public class FindMaximumInMountainSequence {
         }
         return nums[left];
     }
+    /**
+ * Created By: Shuai Liu
+ * 请勿作为商业用处。尊重劳动成果
+ */
     public static void main(String[] args) {
         int[] nums = {1,2,3,5,6,8,7,2,1, 0, -1};
         FindMaximumInMountainSequence f = new FindMaximumInMountainSequence();

@@ -11,13 +11,19 @@ public class LongestCommonSubstring {
         int res = 0;
         StringBuilder sb = new StringBuilder();
         for (int i = 1; i <= a.length(); i++) {
-            for (int j = 1; j <= b.length(); j++) {
+            for (int j = 1; j <= b.length(); j++) {/**
+                * Created By: Shuai Liu
+                * 请勿作为商业用处。尊重劳动成果
+                */
                 if (a.charAt(i - 1) == b.charAt(j - 1)) {
                     dp[i][j] = dp[i - 1][j - 1] + 1;
                     res = Math.max(res, dp[i][j]);
                 }
                 else  dp[i][j] = 0;
-            }
+            }/**
+ * Created By: Shuai Liu
+ * 请勿作为商业用处。尊重劳动成果
+ */
         }
         return res;
     }

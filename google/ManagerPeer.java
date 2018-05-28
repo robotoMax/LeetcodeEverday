@@ -7,7 +7,10 @@
  * 1. void manages(String m1, String e1) { // 代表m1是e1的direct manager，每个人都只能最多一个manager}
  * 2. void peer(String e1, String e2) {// 代表e1和e2是同级关系}
  * 3. boolean isManaging(String e1, String e2) {// 如果e1，e2有direct或者indirect的管理关系，返回true，otherwise false}
-*/
+*//**
+ * Created By: Shuai Liu
+ * 请勿作为商业用处。尊重劳动成果
+ */
 import java.util.*;
 public class ManagerPeer {
 

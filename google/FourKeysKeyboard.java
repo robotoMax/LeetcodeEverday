@@ -27,11 +27,19 @@
  * 1. 1 <= N <= 50
  * 2. Answers will be in the range of 32-bit signed integer.
  */
+/**
+ * Created By: Shuai Liu
+ * 请勿作为商业用处。尊重劳动成果
+ */
 public class FourKeysKeyboard {
     public int maxA(int N) {
         int[] dp = new int[N + 1];
         for (int i = 0; i <= N; i++) {
             dp[i] = i;
+            /**
+ * Created By: Shuai Liu
+ * 请勿作为商业用处。尊重劳动成果
+ */
             for (int j = 1; j <= i - 3; j++) {
                 dp[i] = Math.max(dp[i], dp[j] * (i - j - 1));
             }

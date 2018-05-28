@@ -14,11 +14,18 @@
  * n = 10, I pick 6.
 Return 6.
  */
+/**
+ * Created By: Shuai Liu
+ * 请勿作为商业用处。尊重劳动成果
+ */
 public class GuessNumberHigherOrLower {
     public int guessNumber(int n) {
         int i = 1;
         int j = n;
-        while (i <= j) {
+   /**
+ * Created By: Shuai Liu
+ * 请勿作为商业用处。尊重劳动成果
+ */     while (i <= j) {
             int mid = (j - i) / 2 + i;
             int num = guess(mid);
             if (num == 0) return mid;

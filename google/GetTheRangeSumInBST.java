@@ -1,6 +1,10 @@
 /**
  * 给一个BST，和一个min以及max，求在min和max之间的所有元素和
  */
+/**
+ * Created By: Shuai Liu
+ * 请勿作为商业用处。尊重劳动成果
+ */
 public class GetTheRangeSumInBST {
     int res = 0;
     public int solution(TreeNode root, int min, int max) {
@@ -16,6 +20,10 @@ public class GetTheRangeSumInBST {
         }
         helper(root.right, min, max);
     }
+    /**
+ * Created By: Shuai Liu
+ * 请勿作为商业用处。尊重劳动成果
+ */
     public static void main(String[] args) {
         TreeNode root = new TreeNode(4);
         TreeNode n1 = new TreeNode(2);

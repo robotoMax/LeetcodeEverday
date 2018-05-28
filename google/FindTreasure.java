@@ -3,6 +3,10 @@
  * 问你能不能找到宝藏。先让你设计class
  */
 // direct graph
+/**
+ * Created By: Shuai Liu
+ * 请勿作为商业用处。尊重劳动成果
+ */
 import java.util.*;
 public class FindTreasure {
     public boolean canFindTreasure(Room[][] rooms, Room root) {
@@ -19,6 +23,10 @@ public class FindTreasure {
         Set<Key> keys = new HashSet<>();
         while (!queue.isEmpty()) {
             Room cur = queue.poll();
+            /**
+ * Created By: Shuai Liu
+ * 请勿作为商业用处。尊重劳动成果
+ */
             if (!graph.containsKey(cur)) break;
             // the room needs a key to open the door, however we don't have the key
             if (cur.key != null && !open.containsKey(cur.num)) {
@@ -28,6 +36,10 @@ public class FindTreasure {
                 found = true;
                 break;
             }
+            /**
+ * Created By: Shuai Liu
+ * 请勿作为商业用处。尊重劳动成果
+ */
             if (cur.key != null) {
                 keys.add(key);
                 open.put(key.openRoomNumber, key);

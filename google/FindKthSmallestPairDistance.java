@@ -21,6 +21,10 @@
  * 2. 0 <= nums[i] < 1000000.
  * 3. 1 <= k <= len(nums) * (len(nums) - 1) / 2.
  */
+/**
+ * Created By: Shuai Liu
+ * 请勿作为商业用处。尊重劳动成果
+ */
 import java.util.*;
 public class FindKthSmallestPairDistance {
     public int smallestDistancePair(int[] nums, int k) {
@@ -43,7 +47,10 @@ public class FindKthSmallestPairDistance {
         for (int i = 0; i < nums.length; i++) {
             res += binarySearch(nums, mid + nums[i]) - (i + 1);
         }
-        return res;
+        return res;/**
+        * Created By: Shuai Liu
+        * 请勿作为商业用处。尊重劳动成果
+        */
     }
     public int binarySearch(int[] nums, int target) {
         int i = 0;

@@ -11,6 +11,10 @@
  * it should return 2.
  * 
  */
+/**
+ * Created By: Shuai Liu
+ * 请勿作为商业用处。尊重劳动成果
+ */
 import java.util.*;
 public class FindDoubleLinkedListGroup {
     public int solution(Node[] nodes) {
@@ -26,7 +30,10 @@ public class FindDoubleLinkedListGroup {
         return res;
     }
 }
-
+/**
+ * Created By: Shuai Liu
+ * 请勿作为商业用处。尊重劳动成果
+ */
 class Node {
     int val;
     Node pre;

@@ -1,3 +1,7 @@
+/**
+ * Created By: Shuai Liu
+ * 请勿作为商业用处。尊重劳动成果
+ */
 import java.util.*;
 public class CycleOfAnArray {
     public int solution(int[] nums) {
@@ -23,7 +27,7 @@ public class CycleOfAnArray {
             }
         }
         return res;
-    }
+    } //* 请勿作为商业用处。尊重劳动成果
     public static void main(String[] args) {
         CycleOfAnArray c = new CycleOfAnArray();
         int[] nums = {1,2,1};

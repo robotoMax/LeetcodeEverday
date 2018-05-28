@@ -1,3 +1,7 @@
+/**
+ * Created By: Shuai Liu
+ * 请勿作为商业用处。尊重劳动成果
+ */
 import java.util.*;
 public class GoogleWordLadder {
     public boolean solution(List<String> dict, String start, String end) {
@@ -13,10 +17,18 @@ public class GoogleWordLadder {
                 if (canTurn(cur, str) && visited.add(str)) {
                     queue.add(str);
                 }
+                /**
+ * Created By: Shuai Liu
+ * 请勿作为商业用处。尊重劳动成果
+ */
             }
         }
         return false;
     }
+    /**
+ * Created By: Shuai Liu
+ * 请勿作为商业用处。尊重劳动成果
+ */
     public boolean canTurn(String cur, String str) {
         int len1 = cur.length();
         int len2 = str.length();

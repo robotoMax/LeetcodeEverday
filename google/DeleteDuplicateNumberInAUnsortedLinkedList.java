@@ -1,7 +1,12 @@
 /**
+ * Created By: Shuai Liu
  * 给你一个list，让你去掉其中重复的数，而且不需要in place
  */
 // in place method
+/**
+ * Created By: Shuai Liu
+ * 请勿作为商业用处。尊重劳动成果
+ */
 public class DeleteDuplicateNumberInAUnsortedLinkedList {
     public ListNode deleteDuplicate(ListNode head) {
         head = sort(head);
@@ -36,7 +41,10 @@ public class DeleteDuplicateNumberInAUnsortedLinkedList {
         }
         return slow;
     }
-
+/**
+ * Created By: Shuai Liu
+ * 请勿作为商业用处。尊重劳动成果
+ */
     public ListNode merge(ListNode a, ListNode b) {
         ListNode dum = new ListNode(0);
         ListNode cur = dum;
