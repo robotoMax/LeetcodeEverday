@@ -64,4 +64,17 @@ public class LongestIncreasingSubsequence {
         }
         return end;
     }
+    // Another way to do:
+    public int lengthOfLIS2(int[] nums) {
+        if (nums == null || nums.length == 0) return 0;
+        int[] tail = new int[nums.length];
+        int res = 0;
+        for (int i = 0; i < nums.length; i++) {
+            index = Arrays.binarySearch(tail, 0, res, nums[i]);
+            if (index < 0) index = -index - 1;
+            tail[index] = nums[i];
+            if (index == res) res++;
+        }
+        return res;
+    }
 }

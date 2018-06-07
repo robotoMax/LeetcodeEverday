@@ -1,12 +1,14 @@
 /**
- * 
  * Date: 04/12/2018
  * Created By: Shuai Liu
+ * Type: Dynamic Programming, minmax.
  * 
  * We are playing the Guess Game. The game is as follows:
  * I pick a number from 1 to n. You have to guess which number I picked.
  * Every time you guess wrong, I'll tell you whether the number I picked is higher or lower.
- * However, when you guess a particular number x, and you guess wrong, you pay $x. You win the game when you guess the number 
+ * However, when you guess a particular number x, and you guess wrong, you pay $x. You win the game when you 
+ * guess the number 
+ * 
  * I picked.
  * Example:
  * n = 10, I pick 8.
@@ -20,26 +22,29 @@
  */
 /**
  * finding the maximum out of the minimum costs of its left and right segments
- * the method is similar to number of distinct tree
- */
-/**
- * Created By: Shuai Liu
- * 请勿作为商业用处。尊重劳动成果
+ * the method is similar to number of distinct tree.
+ * 
+ * For each number x in range[i~j]
+ * we do: result_when_pick_x = x + max{DP([i~x-1]), DP([x+1, j])}
+ * --> // the max means whenever you choose a number, the feedback is always bad and therefore leads you to a worse branch.
+ * then we get DP([i~j]) = min{xi, ... ,xj}
+ * --> // this min makes sure that you are minimizing your cost.
+ * 
  */
 public class GuessNumberHigherOrLowerII {
     public int getMoneyAmount(int n) {
         int[][] dp = new int[n + 1][n + 1];
         return helper(dp, 1, n);
     }
-    public int helper(int[][] dp, int i, int j) {
-        if (i >= j) return 0;
-        if (dp[i][j] > 0) return dp[i][j];
+    public int helper(int[][] dp, int start, int end) {
+        if (start >= end) return 0;
+        if (dp[start][end] > 0) return dp[start][end];
         int res = Integer.MAX_VALUE;
-        for (int x = i; x <= j; x++) {
-            int temp = x + Math.max(helper(dp, i, x - 1), helper(dp, x + 1, j));
+        for (int i = start; i <= end; i++) {
+            int temp = i + Math.max(helper(dp, start, i - 1), helper(dp, i + 1, end));
             res = Math.min(res, temp);
         }
-        dp[i][j] = res;
-        return res;
+        dp[start][end] = res;
+        return dp[start][end];
     }
 }
