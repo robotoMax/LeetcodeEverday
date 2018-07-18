@@ -21,16 +21,15 @@
  */
 public class RemoveDuplicateLetters {
     public String removeDuplicateLetters(String s) {
+        if (s == null || s.length() == 0) return "";
+        int[] cache = new int[26];
+        for (char c : s.toCharArray()) cache[c - 'a']++;
         int pos = 0;
-        int[] count = new int[26];
-        for (int i = 0; i < s.length(); i++) {
-            count[s.charAt(i) - 'a']++;
-        }
         for (int i = 0; i < s.length(); i++) {
             if (s.charAt(i) < s.charAt(pos)) pos = i;
-            count[s.charAt(i) - 'a']--;
-            if (count[s.charAt(i) - 'a'] == 0) break;
+            cache[s.charAt(i) - 'a']--;
+            if (cache[s.charAt(i) - 'a'] == 0) break;
         }
-        return s.length() == 0 ? "" : s.charAt(pos) + removeDuplicateLetters(s.substring(pos + 1).replaceAll(s.charAt(pos) + "", ""));
+        return s.charAt(pos) + "" + removeDuplicateLetters(s.substring(pos + 1).replaceAll(s.charAt(pos) + "", ""));
     }
 }

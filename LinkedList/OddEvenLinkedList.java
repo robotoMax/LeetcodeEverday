@@ -19,15 +19,14 @@ public class OddEvenLinkedList {
         if (head == null || head.next == null) return head;
         ListNode odd = head;
         ListNode even = head.next;
-        ListNode evenDum = new ListNode(0);
-        evenDum.next = even;
+        ListNode evenDum = even;
         while (even != null && even.next != null) {
             odd.next = odd.next.next;
             even.next = even.next.next;
             odd = odd.next;
             even = even.next;
         }
-        odd.next = evenDum.next;
+        odd.next = evenDum;
         return head;
     }
 }
