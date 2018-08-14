@@ -9,6 +9,7 @@
  * Note: You may assume that n is not less than 2 and not larger than 58.
  */
 public class IntegerBreak {
+    // memoization
     public int integerBreak(int n) {
         int[] dp = new int[n + 1];
         dp[0] = 1;
@@ -19,5 +20,19 @@ public class IntegerBreak {
             }
         }
         return dp[n];
+    }
+    // deduction -- come up with the solution by myself
+    public int integerBreak1(int n) {
+        int[] dp = new int[n + 1];
+        dp[0] = 0;
+        dp[1] = 1;
+        return helper(dp, n);
+    }
+    public int helper(int[] dp, int target) {
+        if (dp[target] > 0) return dp[target];
+        for (int i = 1; i <= target; i++) {
+            dp[target] = Math.max(dp[target], Math.max(target - i, helper(dp, target - i)) * Math.max(i, dp[i]));
+        }
+        return dp[target];
     }
 }

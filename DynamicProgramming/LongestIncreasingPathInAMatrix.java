@@ -32,30 +32,32 @@
  * same as coin change
  */
 public class LongestIncreasingPathInAMatrix {
-    int[][] dirc = {{1, 0}, {0, -1}, {-1, 0}, {0, 1}};
     public int longestIncreasingPath(int[][] matrix) {
         if (matrix == null || matrix.length == 0) return 0;
         int res = 1;
-        int[][] cache = new int[matrix.length][matrix[0].length];
+        int[][] dist = new int[matrix.length][matrix[0].length];
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[0].length; j++) {
-                int len = helper(matrix, i, j, cache, Integer.MIN_VALUE);
-                res = Math.max(res, len);
+                int temp = helper(matrix, i, j, dist);
+                res = Math.max(res, temp);
             }
         }
         return res;
     }
-    public int helper(int[][] matrix, int i, int j, int[][] cache, int pre) {
-        if (i < 0 || i >= matrix.length || j < 0 || j >= matrix[0].length || matrix[i][j] <= pre) return 0;
-        if (cache[i][j] > 0) return cache[i][j];
-        int res = 1;
-        for (int[] dir : dirc) {
-            int x = i + dir[0];
-            int y = j + dir[1];
-            int temp = helper(matrix, x, y, cache, matrix[i][j]);
-            res = Math.max(res, temp + 1);
+    int[][] dir = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+    public int helper(int[][] matrix, int x, int y, int[][] visited) {
+        if (visited[x][y] > 0) return visited[x][y];
+        int dist = 1;
+        for (int[] d : dir) {
+            int i = x + d[0];
+            int j = y + d[1];
+            int temp = 0;
+            if (i >= 0 && i < matrix.length && j >= 0 && j < matrix[0].length && matrix[i][j] > matrix[x][y]) {
+                temp += helper(matrix, i, j, visited) + 1;
+            }
+            dist = Math.max(temp, dist);
         }
-        cache[i][j] = res;
-        return res;
+        visited[x][y] = dist;
+        return dist;
     }
 }

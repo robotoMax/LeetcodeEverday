@@ -19,7 +19,6 @@ import java.util.*;
 public class PalindromePairs {
     public List<List<Integer>> palindromePairs(String[] words) {
         List<List<Integer>> res = new ArrayList<>();
-        if (words == null || words.length == 0) return res;
         Map<String, Integer> map = new HashMap<>();
         for (int i = 0; i < words.length; i++) map.put(words[i], i);
         for (int i = 0; i < words.length; i++) {
@@ -27,21 +26,15 @@ public class PalindromePairs {
                 String sub1 = words[i].substring(0, j);
                 String sub2 = words[i].substring(j);
                 if (isPalindrome(sub1)) {
-                    String sub2rev = new StringBuilder(sub2).reverse().toString();
-                    if (map.containsKey(sub2rev) && map.get(sub2rev) != i) {
-                        List<Integer> list = new ArrayList<>();
-                        list.add(map.get(sub2rev));
-                        list.add(i);
-                        res.add(list);
+                    String rev2sub = new StringBuilder(sub2).reverse().toString();
+                    if (map.containsKey(rev2sub) && map.get(rev2sub) != i) {
+                        res.add(new ArrayList<>(Arrays.asList(new Integer[] {map.get(rev2sub), i})));
                     }
                 }
-                if (sub2.length() != 0 && isPalindrome(sub2)) {
-                    String sub1rev = new StringBuilder(sub1).reverse().toString();
-                    if (map.containsKey(sub1rev) && map.get(sub1rev) != i) {
-                        List<Integer> list = new ArrayList<>();
-                        list.add(i);
-                        list.add(map.get(sub1rev));
-                        res.add(list);
+                if (isPalindrome(sub2) && sub2.length() != 0) {
+                    String rev1sub = new StringBuilder(sub1).reverse().toString();
+                    if (map.containsKey(rev1sub) && map.get(rev1sub) != i) {
+                        res.add(new ArrayList<>(Arrays.asList(new Integer[] {i, map.get(rev1sub)})));
                     }
                 }
             }
@@ -49,12 +42,9 @@ public class PalindromePairs {
         return res;
     }
     public boolean isPalindrome(String str) {
-        int i = 0;
-        int j = str.length() - 1;
+        int i = 0, j = str.length() - 1;
         while (i < j) {
-            if (str.charAt(i) != str.charAt(j)) return false;
-            i++;
-            j--;
+            if (str.charAt(i++) != str.charAt(j--)) return false;
         }
         return true;
     }

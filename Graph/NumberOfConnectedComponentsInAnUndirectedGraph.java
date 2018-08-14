@@ -48,4 +48,25 @@ public class NumberOfConnectedComponentsInAnUndirectedGraph {
             helper(graph, visited, a);
         }
     }
+    // using Union find:
+    public int countComponents1(int n, int[][] edges) {
+        int[] roots = new int[n];
+        for (int i = 0; i < n; i++) roots[i] = i;
+        for (int[] e : edges) {
+            int p1 = find(roots, e[0]);
+            int p2 = find(roots, e[1]);
+            if (p1 != p2) {
+                roots[p1] = p2;
+                n--;
+            }
+        }
+        return n;
+    }
+    public int find(int[] roots, int id) {
+        int par = roots[id];
+        while (par != roots[par]) {
+            par = roots[par];
+        }
+        return par;
+    }
 }

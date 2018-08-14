@@ -13,25 +13,24 @@
  */
 public class MovingAverageFromDataStream {
 
-        int[] window;
-        int num;
-        int index;
-        long sum;
-
+    int size;
+    int[] num;
+    double sum = 0;
+    int index;
+    int n;
+    
     /** Initialize your data structure here. */
     public MovingAverageFromDataStream(int size) {
-        window = new int[size];
-        num = 0;
-        index = 0;
-        sum = 0;
+        this.size = size;
+        num = new int[size];
     }
-
+    
     public double next(int val) {
-        if (num < window.length) num++;
-        sum -= window[index];
-        sum += val;
-        window[index] = val;
-        index = (index + 1) % window.length;
-        return (double) sum / num;
+        index = n % size;
+        sum -= num[index];
+        num[index] = val;
+        sum += num[index];
+        n++;
+        return n >= size ? sum / size : sum / n;
     }
 }
