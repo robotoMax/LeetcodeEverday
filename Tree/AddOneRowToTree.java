@@ -63,20 +63,16 @@ public class AddOneRowToTree {
         return root;
     }
     public void helper(TreeNode root, int v, int d, int cur) {
-        if (root == null || cur == d) return;
-        if (cur == d - 1) {
-            TreeNode left = null;
-            TreeNode right = null;
-            if (root.left != null) left = root.left;
-            if (root.right != null) right = root.right;
+        if (root == null) return;
+        if (cur + 1 == d) {
+            TreeNode left = root.left;
+            TreeNode right = root.right;
             root.left = new TreeNode(v);
             root.right = new TreeNode(v);
             root.left.left = left;
             root.right.right = right;
-            return;
         }
         helper(root.left, v, d, cur + 1);
         helper(root.right, v, d, cur + 1);
-        return;
     }
 }

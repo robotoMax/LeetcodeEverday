@@ -40,3 +40,4 @@ public class SortColors {
         nums[j] = temp;
     }
 }
+// just need to put the 0 to the front, and put 2 to the end. So we can just concern 0 and 2, not 1.

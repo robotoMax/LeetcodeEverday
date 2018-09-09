@@ -34,18 +34,27 @@
  */
 public class IsGraphBipartite {
     public boolean isBipartite(int[][] graph) {
-        int[] colors = new int[graph.length];
-        Arrays.fill(colors, -1);
-        for (int i = 0; i < graph.length; i++) {
-            if (colors[i] == -1 && !valid(graph, colors, 0, i)) return false;
+        if (graph == null || graph.length == 0) return false;
+        int[] group = new int[graph.length];
+        for (int i = 0; i < group.length; i++) {
+            if (group[i] == 0) {
+                if (!helper(graph, i, group, 1)) return false;
+            }
         }
         return true;
     }
-    public boolean valid(int[][] graph, int[] colors, int color, int node) {
-        if (colors[node] != -1) return colors[node] == color;
-        colors[node] = color;
-        for (int next : graph[node]) {
-            if (!valid(graph, colors, 1 - color, next)) return false;
+    public boolean helper(int[][] graph, int cur, int[] group, int flag) {
+        group[cur] = flag;
+        for (int i = cur; i < graph.length; i++) {
+            for (int j = 0; j < graph[cur].length; j++) {
+                int next = graph[cur][j];
+                if (group[next] == flag) return false;
+                else if (group[next] != 0) continue;
+                else {
+                    group[next] = -1 * flag;
+                    if (!helper(graph, next, group, -1 * flag)) return false;
+                }
+            }
         }
         return true;
     }

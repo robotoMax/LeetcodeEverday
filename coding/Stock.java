@@ -37,6 +37,24 @@ public class Stock {
     // case 3: k = 2
     // return max profit
     public int stock3(int[] nums) {
+        // if (prices == null || prices.length == 0) return 0;
+        // int[] t1 = new int[prices.length];
+        // int[] t2 = new int[prices.length];
+        // int minP = prices[0];
+        // for (int i = 1; i < prices.length; i++) {
+        //     minP = Math.min(prices[i], minP);
+        //     t1[i] = Math.max(t1[i - 1], prices[i] - minP);
+        // }
+        // int maxP = prices[prices.length - 1];
+        // for (int i = prices.length - 2; i >= 0; i--) {
+        //     maxP = Math.max(maxP, prices[i]);
+        //     t2[i] = Math.max(t2[i + 1], maxP - prices[i]);
+        // }
+        // int res = 0;
+        // for (int i = 0; i < t1.length; i++) {
+        //     res = Math.max(res, t1[i] + t2[i]);
+        // }
+        // return res;
         if (nums == null || nums.length == 0) return 0;
         int t_2k0 = 0;
         int t_2k1 = Integer.MIN_VALUE;
@@ -53,21 +71,24 @@ public class Stock {
 
     // case 4: k
     // return max profit
-    public int stock4(int[] nums, int k) {
-        if (nums == null || nums.length == 0) return 0;
-        if (k >= nums.length / 2) {
-            return stock2(nums);
+    public int stock4(int[] prices, int k) {
+        if (k > prices.length / 2) {
+            int res = 0;
+            for (int i = 1; i < prices.length; i++) {
+                if (prices[i] > prices[i - 1]) res += prices[i] - prices[i - 1];
+            }
+            return res;
         }
-        int[] t_ik0 = new int[k + 1];
-        int[] t_ik1 = new int[k + 1];
-        Arrays.fill(t_ik1, Integer.MIN_VALUE);
-        for (int i = 0; i < nums.length; i++) {
-            for (int j = k; j >= 1; j--) {
-                t_ik0[j] = Math.max(t_ik0[j], t_ik1[j] + nums[i]);
-                t_ik1[j] = Math.max(t_ik1[j], t_ik0[j - 1] - nums[i]);
+        int[] t_k0 = new int[k + 1];
+        int[] t_k1 = new int[k + 1];
+        Arrays.fill(t_k1, Integer.MIN_VALUE);
+        for (int p : prices) {
+            for (int i = 1; i <= k; i++) {
+                t_k0[i] = Math.max(t_k0[i], t_k1[i] + p);
+                t_k1[i] = Math.max(t_k1[i], t_k0[i - 1] - p);
             }
         }
-        return t_ik0[k];
+        return t_k0[k];
     }
 
     public static void main(String[] args) {
