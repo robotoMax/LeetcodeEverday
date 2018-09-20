@@ -1,14 +1,12 @@
 public class Singleton {
-    private static Singleton singletonIntance = new Singleton();
-
-    private Singleton() {
-        System.out.println("Creating...");
-    }
-    
+    private static Singleton singleton = null;
+    private Singleton() {  }
     public static Singleton getInstance() {
-        return singletonIntance;
+        if (singleton== null) {
+            singleton= new Singleton();
+        }
+        return singleton;
     }
-
 }
 
 class TestClass {
